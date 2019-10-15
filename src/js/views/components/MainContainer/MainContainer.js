@@ -3,10 +3,18 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import React from 'react';
 import MainContainer from './MainContainer.styled';
 import api from 'Utils/api';
+
+const propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+}
 
 class MainContainerComponent extends React.Component {
   constructor() {
@@ -48,6 +56,11 @@ class MainContainerComponent extends React.Component {
       loading,
       search,
     } = this.state
+
+    const {
+      location: { pathname },
+    } = this.props;
+
     return (
       <MainContainer.Container>
         <MainContainer.Search>
@@ -70,24 +83,27 @@ class MainContainerComponent extends React.Component {
               <Table aria-label="Popular Movies">
                 <TableBody>
                   {
-                    this.state.movies.map(movie => (
-                      <TableRow key={movie.id}>
-                        <TableCell component="th" scope="row">
-                          {movie.title}
-                        </TableCell>
-                        <TableCell align="right"> {movie.vote_average} </TableCell>
-                        <TableCell align="right"> {movie.popularity} </TableCell>
-                      </TableRow>
+                    movies.map(movie => (
+                      <Link to={`movies/${movie.id}`}>
+                        <TableRow key={movie.id}>
+                          <TableCell component="th" scope="row">
+                            {movie.title}
+                          </TableCell>
+                          <TableCell align="right"> {movie.vote_average} </TableCell>
+                          <TableCell align="right"> {movie.popularity} </TableCell>
+                        </TableRow>
+                      </Link>
                     ))
                   }
                 </TableBody>
-            </Table> : <div> loading </div>
+              </Table> : <div> loading </div>
           }
-          
         </MainContainer.List>
       </MainContainer.Container>
     );
   }
 }
+
+MainContainer.propTypes = propTypes;
 
 export default MainContainerComponent;

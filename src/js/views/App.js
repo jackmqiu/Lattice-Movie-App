@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import MainContainer from 'Components/MainContainer';
+import MovieDetail from 'Components/MovieDetail';
 
 const defaultProps = {
   // loading: false,
@@ -35,7 +36,7 @@ class App extends React.Component {
               />)}
             />
             <Route path="/popular" component={MainContainer} />
-            {/*<Route path="/movies" component={MovieDetail} />*/}
+            <Route path="/movies/:movie_id" component={MovieDetail} />
             <MainContainer />
           </Switch>
         </div>
