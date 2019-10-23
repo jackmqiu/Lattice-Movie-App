@@ -6,12 +6,14 @@ const Container = styled.div`
 `;
 
 const List = styled.div`
-  width: 80%;
-  overflow: hidden;
+  width: 60%;
+  margin: 0 auto;
+  background: cyan;
 `
 
 const Search = styled.div`
-  width: 80%;
+  width: 60%;
+  margin: 0 auto;
 `
 export default {
   Container,
