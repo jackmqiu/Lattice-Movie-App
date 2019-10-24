@@ -31,7 +31,6 @@ class MainContainerComponent extends React.Component {
 
   componentWillMount() {
     api.get('/movie/popular').then((response) => {
-      console.log(response.data.results);
       this.setState({ movies: response.data.results, loading: false });
     });
   }
@@ -52,7 +51,6 @@ class MainContainerComponent extends React.Component {
   }
   
   handleClick(id) {
-    console.log(id);
     this.props.history.push(`movies/${id}`);
   }
   render() {
